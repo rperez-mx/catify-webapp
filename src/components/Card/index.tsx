@@ -1,13 +1,17 @@
 import { Badge, Box, Button, chakra, Flex } from '@chakra-ui/react';
 import React from 'react'
-import { rawCat } from '../../app/features/cats/catSlice'
-import { useAppSelector } from '../../app/hooks'
+import { Cat, getCat } from '../../app/features/cats/catSlice'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import { FaHeart, FaStar, FaForward } from 'react-icons/fa'
 
 export default function Card() {
-  const cats = useAppSelector((state: RootState)=>(state.cats.cats))
-  const cat : rawCat = cats[0] as rawCat
+  const cat : Cat = useAppSelector((state: RootState)=>(state.cats.cat))
+  const dispatch = useAppDispatch()
+  // Handle next cat click
+  const handleNext = () => {
+    dispatch(getCat())
+  }
   return (
     <Flex
   bg="#edf3f8"
@@ -47,8 +51,8 @@ export default function Card() {
       fontWeight="bold"
       lineHeight="none"
       color="red.100"
-      transform={{base: "translate(-250%,50%)", lg: "translate(-700%, 100%)"}}
-      bg="red.600"
+      transform={{base: "translate(-250%,50%)",sm: "translate(-350%,50%)", md: "translate(-530%,50%)",lg: "translate(-430%, 100%)", xl:"translate(-790%, 100%)"}}
+      bg={{base:"red.600"}}
       rounded="full"
     >
       0 likes
@@ -153,6 +157,7 @@ export default function Card() {
         },
         outline: "none",
       }}
+      onClick={handleNext}
     >
      Next
     </Button>
@@ -168,11 +173,12 @@ export default function Card() {
         }}
         letterSpacing={1}
       >
-        {cat.tags.map((tag)=>(
-          <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="blue" letterSpacing={2}>
+        {cat.tags&& cat.tags.map((tag,index)=>(
+          <Badge key={index} rounded="full" px="2" fontSize="0.8em" colorScheme="blue" letterSpacing={2}>
           {tag}
         </Badge>
         ))}
+        {!cat.tags && 'no tags'}
       </chakra.h3>
 
       
