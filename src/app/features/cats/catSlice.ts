@@ -5,6 +5,7 @@ import type { RootState } from '../../store'
 // define our slice state's type
 interface catsState {
   cats: Array<Object>,
+  currentCat: Cat,
   status: string
 }
 //Define our cat obj type
@@ -13,9 +14,20 @@ export interface rawCat {
   created_at: string,
   tags: Array<string>
 }
+//Define our cat obj type
+export interface Cat {
+  id: string,
+  picture: string,
+  created_at: string,
+  tags: Array<string>
+  likes: number,
+  likes_ids: Array<string>,
+  comments: Array<Object>
+}
 // define initial state using that type
 const initialState : catsState = {
   cats: [],
+  currentCat: {} as Cat,
   status: 'empty'
 }
 // async thunks coming up
