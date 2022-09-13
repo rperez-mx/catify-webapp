@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}>
-          <Route path="/feed" element={<Feed />}/>
+          <Route path="/" element={<Feed />}/>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,10 +1,24 @@
-import { Box, Button, chakra, CloseButton, Flex, HStack, IconButton, useColorModeValue, useDisclosure, VStack } from '@chakra-ui/react';
-import { AiOutlineMenu } from 'react-icons/ai'
-import React from 'react'
+import {
+  Box,
+  Button,
+  chakra,
+  CloseButton,
+  Flex,
+  HStack,
+  IconButton,
+  useColorMode,
+  useColorModeValue,
+  useDisclosure,
+  VStack,
+} from "@chakra-ui/react";
+import { AiOutlineMenu } from "react-icons/ai";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import React from "react";
 
 export default function Navbar() {
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <React.Fragment>
       <chakra.header
@@ -24,11 +38,11 @@ export default function Navbar() {
               title="Choc Home Page"
               display="flex"
               alignItems="center"
-            >
-            </chakra.a>
+            ></chakra.a>
             <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
-            Catify
+              Catify
             </chakra.h1>
+            
           </Flex>
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
@@ -41,10 +55,11 @@ export default function Navbar() {
               }}
             >
               {/* Right side of the navbar */}
-            </HStack>
-            <Button colorScheme="brand" size="sm">
-              Get Started
+              <Button onClick={toggleColorMode}>
+              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
+            </HStack>
+
             <Box
               display={{
                 base: "inline-flex",
@@ -76,32 +91,19 @@ export default function Navbar() {
                 flexDirection="column"
                 p={2}
                 pb={4}
-                m={2}
                 bg={bg}
                 spacing={3}
                 rounded="sm"
                 shadow="sm"
+                w='full'
               >
+                <Button onClick={toggleColorMode}>
+              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+            </Button>
                 <CloseButton
                   aria-label="Close menu"
                   onClick={mobileNav.onClose}
                 />
-
-                <Button w="full" variant="ghost">
-                  Features
-                </Button>
-                <Button w="full" variant="ghost">
-                  Pricing
-                </Button>
-                <Button w="full" variant="ghost">
-                  Blog
-                </Button>
-                <Button w="full" variant="ghost">
-                  Company
-                </Button>
-                <Button w="full" variant="ghost">
-                  Sign in
-                </Button>
               </VStack>
             </Box>
           </HStack>
