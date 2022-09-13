@@ -3,13 +3,15 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../store'
 
 // define our slice state's type
-interface catsState {
-  cats: Array<Object>,
-  currentCat: Cat,
+interface catState {
+  cat : Cat,
+  // cats: Array<Object>,
+  // currentCat: Cat,
+  // currentCatIndex: number,
   status: string
 }
 //Define our cat obj type
-export interface rawCat {
+export interface rawData {
   id: string,
   created_at: string,
   tags: Array<string>
@@ -25,38 +27,58 @@ export interface Cat {
   comments: Array<Object>
 }
 // define initial state using that type
-const initialState : catsState = {
-  cats: [],
-  currentCat: {} as Cat,
+const initialState : catState = {
+  cat: {} as Cat,
+  // cats: [] as Array<rawCat>,
+  // currentCat: {} as Cat,
+  // currentCatIndex: 0,
   status: 'empty'
 }
 // async thunks coming up
 // getACat
-export const getCats = createAsyncThunk(
+export const getCat = createAsyncThunk(
   'cats/getCats',
   async () => {
-    const request = await fetch('https://cataas.com/api/cats?limit=10&skip=2')
+    const request = await fetch('https://cataas.com/cat?json=true')
     const response = await request.json()
-    console.log(response)
-    console.log(typeof response)
-    return response
+    let data : rawData = response
+    let cat : Cat = {} as Cat
+    cat.id = data.id
+    cat.picture = data.id
+    cat.created_at = data.created_at
+    if(data.tags.length>0){
+      cat.tags = data.tags
+    } else {
+      cat.tags.push('No Tags :c')
+    }
+    return cat
   }
+  
 )
 export const catSlice = createSlice({
   name: 'cats',
   initialState,
   reducers: {
-
+    // init: (state) => {
+    //   let cc : Cat = {} as Cat
+    //   let initCat : rawCat = state.cats[0] as rawCat
+    //   cc.id = initCat.id
+    //   cc.picture = initCat.id
+    //   cc.tags = initCat.tags
+    //   cc.created_at = initCat.created_at
+    //   state.currentCat = cc
+    // }
   },
   extraReducers: (builder) => {
-    builder.addCase(getCats.pending, (state)=>{
+    builder.addCase(getCat.pending, (state)=>{
       state.status = 'loading'
     }),
-    builder.addCase(getCats.fulfilled, (state, action)=>{
-      state.cats = action.payload
+    builder.addCase(getCat.fulfilled, (state, action)=>{
+      state.cat = action.payload
       state.status = 'fulfilled'
     })
   }
 })
 
+// export const { init } = catSlice.actions
 export default catSlice.reducer
