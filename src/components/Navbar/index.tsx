@@ -40,7 +40,7 @@ export default function Navbar() {
               alignItems="center"
             ></chakra.a>
             <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
-              Catify
+              {import.meta.env.VITE_APP_TITLE}
             </chakra.h1>
             
           </Flex>

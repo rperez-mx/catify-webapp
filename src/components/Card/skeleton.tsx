@@ -166,7 +166,7 @@ export default function CardSkeleton() {
           }}
           letterSpacing={1}
         >
-        <Skeleton startColor='pink.500' endColor='orange.500' height='20px' padding={5}/>
+        <Skeleton startColor='pink.500' endColor='orange.500' height='25px' />
         </chakra.h3>
   
         

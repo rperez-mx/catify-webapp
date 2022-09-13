@@ -5,7 +5,7 @@ import React from 'react'
 export default function Footer() {
   return (
     <Flex
-  w={{base:"calc(100vw)", lg:"calc(25vw)"}}
+  w='full'
   position={'absolute'}
   marginBottom={'0'}
   marginRight={'0'}
@@ -30,7 +30,6 @@ export default function Footer() {
       bg: "gray.800",
     }}
   >
-    <HStack>
 
     <chakra.a
       href="#"
@@ -47,7 +46,7 @@ export default function Footer() {
         color: "gray.700",
       }}
       >
-      Catify
+      {import.meta.env.VITE_APP_TITLE}
     </chakra.a>
 
     <chakra.p
@@ -62,7 +61,6 @@ export default function Footer() {
       >
       2022 &copy; All rights reserved
     </chakra.p>
-      </HStack>
 
     <Flex mx="-2">
       <chakra.a

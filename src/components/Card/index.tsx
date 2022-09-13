@@ -44,14 +44,15 @@ export default function Card() {
       }}
     >
       <chakra.span
-      pos="fixed"
+      // pos="relative"
+      marginTop={'20px'}
       px={2}
       py={1}
       fontSize={{base:"sm", lg: "md"}}
       fontWeight="bold"
       lineHeight="none"
       color="red.100"
-      transform={{base: "translate(-250%,50%)",sm: "translate(-350%,50%)", md: "translate(-530%,50%)",lg: "translate(-430%, 100%)", xl:"translate(-790%, 100%)"}}
+      // transform={{base: "translate(-250%,50%)",sm: "translate(-350%,50%)", md: "translate(-530%,50%)",lg: "translate(-430%, 100%)", xl:"translate(-790%, 100%)"}}
       bg={{base:"red.600"}}
       rounded="full"
     >
