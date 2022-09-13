@@ -7,7 +7,12 @@ interface catsState {
   cats: Array<Object>,
   status: string
 }
-
+//Define our cat obj type
+export interface rawCat {
+  id: string,
+  created_at: string,
+  tags: Array<string>
+}
 // define initial state using that type
 const initialState : catsState = {
   cats: [],
@@ -18,7 +23,7 @@ const initialState : catsState = {
 export const getCats = createAsyncThunk(
   'cats/getCats',
   async () => {
-    const request = await fetch('https://cataas.com/api/cats?limit=3')
+    const request = await fetch('https://cataas.com/api/cats?limit=10&skip=2')
     const response = await request.json()
     console.log(response)
     console.log(typeof response)

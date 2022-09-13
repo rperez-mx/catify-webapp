@@ -5,7 +5,7 @@ import React from 'react'
 export default function Footer() {
   return (
     <Flex
-  w="calc(25vw)"
+  w={{base:"calc(100vw)", lg:"calc(25vw)"}}
   position={'absolute'}
   marginBottom={'0'}
   marginRight={'0'}
@@ -66,7 +66,7 @@ export default function Footer() {
 
     <Flex mx="-2">
       <chakra.a
-        href="#"
+        href="https://www.instagram.com/_h0ld3n/"
         mx="2"
         color="gray.600"
         _dark={{
@@ -86,7 +86,7 @@ export default function Footer() {
       </chakra.a>
 
       <chakra.a
-        href="#"
+        href="https://www.facebook.com/xb3rl1n"
         mx="2"
         color="gray.600"
         _dark={{
