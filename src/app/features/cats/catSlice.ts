@@ -39,7 +39,7 @@ const initialState : catState = {
 export const getCat = createAsyncThunk(
   'cats/getCats',
   async () => {
-    const request = await fetch('https://cataas.com/cat?json=true')
+    const request = await fetch(import.meta.env.VITE_API_URL)
     const response = await request.json()
     let data : rawData = response
     let cat : Cat = {} as Cat
@@ -48,9 +48,7 @@ export const getCat = createAsyncThunk(
     cat.created_at = data.created_at
     if(data.tags.length>0){
       cat.tags = data.tags
-    } else {
-      cat.tags.push('No Tags :c')
-    }
+    } 
     return cat
   }
   
