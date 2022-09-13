@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import catSlice from "./features/cats/catSlice";
+import userSlice from "./features/user/userSlice";
 
 export const store = configureStore({
   reducer: {
-    cats: catSlice
+    cats: catSlice,
+    user: userSlice
   },
 })
 

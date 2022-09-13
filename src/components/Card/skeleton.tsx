@@ -53,121 +53,126 @@ export default function CardSkeleton() {
       </Box>
       </Skeleton>
       <Box
-        w={{
-          base: 56,
-          md: 64,
-        }}
-        bg="white"
-        _dark={{
-          bg: "gray.800",
-        }}
-        mt={-10}
-        shadow="lg"
-        rounded="lg"
-        overflow="hidden"
-      ><Flex
-      alignItems="center"
-      justifyContent="space-between"
-      py={2}
-      px={3}
-      bg="gray.200"
-      _dark={{
-        bg: "gray.700",
-      }}
-    >
-      <Button 
-      leftIcon={<FaStar/>}
-        bg="yellow.300"
-        fontSize="xs"
-        fontWeight="bold"
-        color="white"
-        px={2}
-        py={1}
-        rounded="lg"
-        textTransform="uppercase"
-        _hover={{
-          bg: "yellow.500",
-          _dark: {
-            bg: "yellow.400",
-          },
-        }}
-        _focus={{
-          bg: "yellow.500",
-          _dark: {
-            bg: "yellow.400",
-          },
-          outline: "none",
-        }}
-      >
-       Fav
-      </Button>
-      <Button 
-      leftIcon={<FaHeart/>}
-        bg="red.400"
-        fontSize="xs"
-        fontWeight="bold"
-        color="white"
-        px={2}
-        py={1}
-        rounded="lg"
-        textTransform="uppercase"
-        _hover={{
-          bg: "red.500",
-          _dark: {
-            bg: "red.400",
-          },
-        }}
-        _focus={{
-          bg: "red.500",
-          _dark: {
-            bg: "red.400",
-          },
-          outline: "none",
-        }}
-      >
-       Like
-      </Button>
-      <Button 
-      leftIcon={<FaForward/>}
-        bg="gray.800"
-        fontSize="xs"
-        fontWeight="bold"
-        color="white"
-        px={2}
-        py={1}
-        rounded="lg"
-        textTransform="uppercase"
-        _hover={{
-          bg: "gray.500",
-          _dark: {
-            bg: "gray.400",
-          },
-        }}
-        _focus={{
-          bg: "gray.500",
-          _dark: {
-            bg: "gray.400",
-          },
-          outline: "none",
-        }}
-        
-      >
-       Next
-      </Button>
-    </Flex>
-        <chakra.h3
-          py={5}
-          textAlign="center"
-          fontWeight="bold"
-          textTransform="uppercase"
-          color="gray.800"
-          _dark={{
-            color: "white",
+          w={{
+            base: 56,
+            md: 64,
           }}
-          letterSpacing={1}
+          
+          mt={{base:'-4em',lg:'-4em'}}
+          shadow="lg"
+          rounded="lg"
+          overflow="hidden"
         >
+          <Flex
+            alignItems="center"
+            justifyContent="space-between"
+            py={3}
+            px={7}
+            bg="whiteAlpha.600"
+            _dark={{
+              bg: "blackAlpha.600",
+            }}
+          >
+            <Button
+              // leftIcon={<FaStar />}
+              bg="yellow.300"
+              fontSize="xs"
+              fontWeight="bold"
+              color="white"
+              px={2}
+              py={1}
+              rounded="full"
+              textTransform="uppercase"
+              _hover={{
+                bg: "yellow.500",
+                _dark: {
+                  bg: "yellow.400",
+                },
+              }}
+              _focus={{
+                bg: "yellow.500",
+                _dark: {
+                  bg: "yellow.400",
+                },
+                outline: "none",
+              }}
+            >
+              <FaStar />
+            </Button>
+            <Button
+              // leftIcon={<FaHeart />}
+              bg="red.400"
+              fontSize="xs"
+              fontWeight="bold"
+              color="white"
+              px={2}
+              py={1}
+              rounded="full"
+              textTransform="uppercase"
+              _hover={{
+                bg: "red.500",
+                _dark: {
+                  bg: "red.400",
+                },
+              }}
+              _focus={{
+                bg: "red.500",
+                _dark: {
+                  bg: "red.400",
+                },
+                outline: "none",
+              }}
+              
+            >
+              <FaHeart />
+            </Button>
+            <Button
+              // leftIcon={<FaForward />}
+              bg="gray.800"
+              fontSize="xs"
+              fontWeight="bold"
+              color="white"
+              px={2}
+              py={1}
+              rounded="full"
+              textTransform="uppercase"
+              _hover={{
+                bg: "gray.500",
+                _dark: {
+                  bg: "gray.400",
+                },
+              }}
+              _focus={{
+                bg: "gray.500",
+                _dark: {
+                  bg: "gray.400",
+                },
+                outline: "none",
+              }}
+            
+            >
+              <FaForward />
+            </Button>
+          </Flex>
+          <chakra.h3
+            py={5}
+            textAlign="center"
+            fontWeight="bold"
+            textTransform="uppercase"
+            bg="blackAlpha.800"
+            color="gray.800"
+            _dark={{
+              bg: "whiteAlpha.800",
+              color: "white",
+            }}
+            
+            letterSpacing={1}
+          >
+            
         <Skeleton startColor='pink.500' endColor='orange.500' height='25px' />
-        </chakra.h3>
+          </chakra.h3>
+        
+       
   
         
       </Box>
