@@ -22,10 +22,10 @@ import React from "react";
 import { Cat, getCat } from "../../app/features/cats/catSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
-import { FaHeart, FaStar, FaForward, FaFacebook } from "react-icons/fa";
+import { FaHeart, FaStar, FaForward, FaFacebook, FaShare } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { IoPricetag } from "react-icons/io5";
-import { setUser, user } from "../../app/features/user/userSlice";
+import { setUser, user, UserInfo } from "../../app/features/user/userSlice";
 import {
   getAuth,
   signInWithPopup,
@@ -82,7 +82,7 @@ export default function Card() {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
         // The signed-in user info.
-        let rawData = result.user;
+        let rawData : UserInfo = result.user as UserInfo;
         let user: user = {} as user;
         user.id = rawData.uid;
         user.name = rawData.displayName;
@@ -110,7 +110,27 @@ export default function Card() {
     if (!isLogged) {
       onOpen();
     }
-  };
+  }
+  // Handle share
+    const handleShare = async () => {
+      const newFile = await fetch(import.meta.env.VITE_API_URL_CUSTOM+cat.picture).then(r=>r.blob())
+      const data = {
+        files: [
+          new File([newFile], 'image.png', {
+            type: newFile.type,
+          }),
+        ],
+        title: 'Mira gatitos bonitoooos ✨',
+        text: `Mira un gatito bonitoooo 💖\nMira más gatitos en -> https://mishigram.web.app ✨`,
+      };
+  
+      try {
+        await navigator.share(data);
+     } catch (err) {
+       console.error(err);
+     }
+  }
+  
   return (
     <Flex
       bg="#edf3f8"
@@ -172,7 +192,7 @@ export default function Card() {
             alignItems="center"
             justifyContent="space-between"
             py={3}
-            px={7}
+            px={4}
             bg="whiteAlpha.600"
             _dark={{
               bg: "blackAlpha.600",
@@ -230,6 +250,33 @@ export default function Card() {
               onClick={handleLike}
             >
               <FaHeart />
+            </Button>
+            <Button
+              // leftIcon={<FaHeart />}
+              bg="blue.400"
+              fontSize="xs"
+              fontWeight="bold"
+              color="white"
+              px={2}
+              py={1}
+              rounded="full"
+              textTransform="uppercase"
+              _hover={{
+                bg: "blue.300",
+                _dark: {
+                  bg: "blue.400",
+                },
+              }}
+              _focus={{
+                bg: "blue.500",
+                _dark: {
+                  bg: "blue.400",
+                },
+                outline: "none",
+              }}
+              onClick={handleShare}
+            >
+              <FaShare />
             </Button>
             <Button
               // leftIcon={<FaForward />}
@@ -298,7 +345,7 @@ export default function Card() {
             </ModalBody>
 
             <ModalFooter px={25} flexDirection={"column"}>
-              <Button
+              {/* <Button
                 w={"full"}
                 colorScheme={"facebook"}
                 leftIcon={<FaFacebook />}
@@ -308,7 +355,7 @@ export default function Card() {
                 <Center>
                   <Text>Continue with Facebook</Text>
                 </Center>
-              </Button>
+              </Button> */}
               <Button
                 w={"full"}
                 variant={"outline"}
