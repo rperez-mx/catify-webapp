@@ -1,4 +1,10 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
   Avatar,
   Box,
   Button,
@@ -20,11 +26,24 @@ import {
 import { AiOutlineMenu } from "react-icons/ai";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import React from "react";
+import { useAppSelector } from "../../app/hooks";
+import { RootState } from "../../app/store";
+import { user } from '../../app/features/user/userSlice'
 
 export default function Navbar() {
+  // Get user data from state 
+  const userState = useAppSelector((state: RootState)=>(state.user))
+  const user : user = userState.user
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
+  // Handle lougout
+  const handleLogout = () => {
+    alert('Estas saliendo')
+    onClose()
+  }
   return (
     <React.Fragment>
       <chakra.header
@@ -48,7 +67,7 @@ export default function Navbar() {
             <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
               {import.meta.env.VITE_APP_TITLE}
             </chakra.h1>
-            <Menu>
+            {userState.logged && <Menu>
               <MenuButton
                 as={Button}
                 rounded={'full'}
@@ -56,20 +75,20 @@ export default function Navbar() {
                 cursor={'pointer'}
                 minW={0}
                 marginLeft={5}>
-                <Avatar
+                {user && <Avatar
                   size={'sm'}
                   src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                    user&& user.picture
                   }
-                />
+                />}
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+                <MenuItem>Favs</MenuItem>
+                <MenuItem>Liked</MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem onClick={onOpen}>Cerrar sesi&oacute;n</MenuItem>
               </MenuList>
-            </Menu>
+            </Menu>}
           </Flex>
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack

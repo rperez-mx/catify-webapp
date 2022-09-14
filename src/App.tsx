@@ -14,9 +14,11 @@ function App() {
     dispatch(getCat())
     const isLogged = localStorage.getItem('isLogged')
     if(isLogged=='true'){
-      const loggedUser = localStorage.getItem('user') 
-      const user : user = JSON.parse(loggedUser) as user
-      dispatch(setUser(user))
+      const loggedUser = localStorage.getItem('user')
+      if(loggedUser!=null){
+        const user : user = JSON.parse(loggedUser) as user
+        dispatch(setUser(user))
+      }
     } else {
       console.log('aint logged')
     }
