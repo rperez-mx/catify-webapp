@@ -1,5 +1,5 @@
 import { Badge, Box, Button, chakra, Flex, Skeleton } from '@chakra-ui/react';
-import { FaHeart, FaStar, FaForward } from 'react-icons/fa'
+import { FaHeart, FaStar, FaForward, FaShare } from 'react-icons/fa'
 import React from 'react'
 
 export default function CardSkeleton() {
@@ -67,7 +67,7 @@ export default function CardSkeleton() {
             alignItems="center"
             justifyContent="space-between"
             py={3}
-            px={7}
+            px={4}
             bg="whiteAlpha.600"
             _dark={{
               bg: "blackAlpha.600",
@@ -125,6 +125,32 @@ export default function CardSkeleton() {
               
             >
               <FaHeart />
+            </Button>
+            <Button
+              // leftIcon={<FaHeart />}
+              bg="blue.400"
+              fontSize="xs"
+              fontWeight="bold"
+              color="white"
+              px={2}
+              py={1}
+              rounded="full"
+              textTransform="uppercase"
+              _hover={{
+                bg: "blue.300",
+                _dark: {
+                  bg: "blue.400",
+                },
+              }}
+              _focus={{
+                bg: "blue.500",
+                _dark: {
+                  bg: "blue.400",
+                },
+                outline: "none",
+              }}
+            >
+              <FaShare />
             </Button>
             <Button
               // leftIcon={<FaForward />}
